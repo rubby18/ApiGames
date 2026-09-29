@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de demostración de TechSolutions VideoGames API">
+    <title>TechSolutions | VideoGames API</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<header class="site-header">
+    <div class="container nav">
+        <a class="brand" href="/">TechSolutions<span>API</span></a>
+        <nav aria-label="Navegación principal">
+            <a href="#catalogo">Catálogo</a>
+            <a href="#categorias">Categorías</a>
+            <a href="#documentacion">API</a>
+            <a href="/docs" target="_blank" rel="noreferrer">Swagger</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container">
+            <p class="eyebrow">API REST · FastAPI · SQLite</p>
+            <h1>VideoGames API</h1>
+            <p>
+                Catálogo de videojuegos relacionado con categorías.
+                Gestiona, consulta, filtra y modifica los datos directamente desde este portal.
+            </p>
+            <a class="button" href="#catalogo">Explorar catálogo</a>
+        </div>
+    </section>
+
+    <section id="catalogo" class="section container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">CRUD de videojuegos</p>
+                <h2>Catálogo</h2>
+            </div>
+            <button class="button" id="new-game-button">Nuevo videojuego</button>
+        </div>
+
+        <div class="filters">
+            <label>
+                Buscar
+                <input id="search-input" type="search" placeholder="Título, desarrollador o plataforma">
+            </label>
+            <label>
+                Categoría
+                <select id="category-filter">
+                    <option value="">Todas</option>
+                </select>
+            </label>
+            <button class="button secondary" id="search-button">Filtrar</button>
+        </div>
+
+        <div id="game-feedback" class="feedback" role="status" aria-live="polite"></div>
+        <div id="games-list" class="cards" aria-live="polite"></div>
+
+        <div class="pagination">
+            <button class="button secondary" id="previous-page">Anterior</button>
+            <span id="page-info">Página 1</span>
+            <button class="button secondary" id="next-page">Siguiente</button>
+        </div>
+    </section>
+
+    <section id="categorias" class="section alternate">
+        <div class="container">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Entidad relacionada</p>
+                    <h2>Categorías</h2>
+                </div>
+                <button class="button" id="new-category-button">Nueva categoría</button>
+            </div>
+            <div id="category-feedback" class="feedback" role="status" aria-live="polite"></div>
+            <div id="categories-list" class="cards"></div>
+        </div>
+    </section>
+
+    <section id="documentacion" class="section container">
+        <p class="eyebrow">Documentación</p>
+        <h2>Endpoints principales</h2>
+        <div class="endpoint-grid">
+            <article><strong>GET</strong><code>/api/games</code><p>Lista, búsqueda, filtros y paginación.</p></article>
+            <article><strong>POST</strong><code>/api/games</code><p>Crea un videojuego asociado a una categoría.</p></article>
+            <article><strong>PUT</strong><code>/api/games/{id}</code><p>Actualiza los datos y/o la categoría.</p></article>
+            <article><strong>DELETE</strong><code>/api/games/{id}</code><p>Elimina un videojuego.</p></article>
+            <article><strong>GET</strong><code>/api/categories</code><p>Lista las categorías disponibles.</p></article>
+            <article><strong>DELETE</strong><code>/api/categories/{id}</code><p>Elimina una categoría solo si no tiene videojuegos.</p></article>
+        </div>
+    </section>
+</main>
+
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+        <button class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
+        <h2 id="modal-title"></h2>
+        <form id="entity-form">
+            <div id="form-fields"></div>
+            <div class="form-actions">
+                <button type="button" class="button secondary" id="cancel-button">Cancelar</button>
+                <button type="submit" class="button">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="container">
+        <p>TechSolutions · VideoGames API · Proyecto académico</p>
+    </div>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
